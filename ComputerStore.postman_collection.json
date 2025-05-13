@@ -1,0 +1,72 @@
+{
+  "info": {
+    "_postman_id": "cstore-collection-001",
+    "name": "ComputerStore API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Categories",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{baseUrl}}/api/categories", "host": ["{{baseUrl}}"], "path": ["api", "categories"] }
+      }
+    },
+    {
+      "name": "Create Category",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"CPUs\",\n  \"description\": \"Processors\"\n}" },
+        "url": { "raw": "{{baseUrl}}/api/categories", "host": ["{{baseUrl}}"], "path": ["api", "categories"] }
+      }
+    },
+    {
+      "name": "Get All Products",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{baseUrl}}/api/products", "host": ["{{baseUrl}}"], "path": ["api", "products"] }
+      }
+    },
+    {
+      "name": "Create Product",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"Intel Core i9-9900K\",\n  \"description\": \"High-end CPU\",\n  \"price\": 475.99,\n  \"categories\": []\n}" },
+        "url": { "raw": "{{baseUrl}}/api/products", "host": ["{{baseUrl}}"], "path": ["api", "products"] }
+      }
+    },
+    {
+      "name": "Import Stock",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": { "mode": "raw", "raw": "[{\n  \"ProductId\": 1,\n  \"Quantity\": 10\n}]" },
+        "url": { "raw": "{{baseUrl}}/api/stock/import", "host": ["{{baseUrl}}"], "path": ["api", "stock", "import"] }
+      }
+    },
+    {
+      "name": "Get Stock By ProductId",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{baseUrl}}/api/stock/1", "host": ["{{baseUrl}}"], "path": ["api", "stock", "1"] }
+      }
+    },
+    {
+      "name": "Calculate Discount",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": { "mode": "raw", "raw": "[{\n  \"ProductId\": 1,\n  \"Quantity\": 2\n}, {\n  \"ProductId\": 2,\n  \"Quantity\": 1\n}]" },
+        "url": { "raw": "{{baseUrl}}/api/discount/calculate", "host": ["{{baseUrl}}"], "path": ["api", "discount", "calculate"] }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "https://localhost:5001" }
+  ]
+} 
