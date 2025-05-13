@@ -6,7 +6,7 @@ A Internet Services Project made with a ASP.NET Core Web API project template fo
 ## Getting Started
 
 ### Prerequisites
-- .NET 8 SDK
+- .NET 8+ SDK
 - Visual Studio 2022+
 - SQL Server (localdb or full)
 
