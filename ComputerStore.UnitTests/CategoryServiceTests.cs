@@ -40,7 +40,7 @@ public class CategoryServiceTests
     [Fact]
     public async Task CreateAsync_AddsCategoryAndReturnsDto()
     {
-        var dto = new CategoryDto { Name = "NewCat" };
+        var dto = new CreateCategoryDto { Name = "NewCat" };
         _categoryRepoMock.Setup(r => r.AddAsync(It.IsAny<Category>())).Returns(Task.CompletedTask);
 
         var result = await _service.CreateAsync(dto);

@@ -33,9 +33,13 @@ namespace ComputerStore.Application.Services
             return category == null ? null : _mapper.Map<CategoryDto>(category);
         }
 
-        public async Task<CategoryDto> CreateAsync(CategoryDto dto)
+        public async Task<CategoryDto> CreateAsync(CreateCategoryDto dto)
         {
-            var category = _mapper.Map<Category>(dto);
+            var category = new Category
+            {
+                Name = dto.Name,
+                Description = dto.Description
+            };
             await _categoryRepository.AddAsync(category);
             return _mapper.Map<CategoryDto>(category);
         }

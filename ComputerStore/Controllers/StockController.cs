@@ -17,7 +17,7 @@ namespace ComputerStore.Controllers
         }
 
         [HttpPost("import")]
-        public async Task<IActionResult> ImportStock([FromBody] IEnumerable<StockDto> stockDtos)
+        public async Task<IActionResult> ImportStock([FromBody] IEnumerable<StockImportDto> stockDtos)
         {
             await _stockService.ImportStockAsync(stockDtos);
             return Ok();
@@ -29,6 +29,20 @@ namespace ComputerStore.Controllers
             var stock = await _stockService.GetStockByProductIdAsync(productId);
             if (stock == null) return NotFound();
             return Ok(stock);
+        }
+
+        [HttpPut("{productId}")]
+        public async Task<IActionResult> UpdateStock(int productId, [FromBody] int quantity)
+        {
+            await _stockService.UpdateStockAsync(productId, quantity);
+            return NoContent();
+        }
+
+        [HttpDelete("{productId}")]
+        public async Task<IActionResult> DeleteStock(int productId)
+        {
+            await _stockService.DeleteStockAsync(productId);
+            return NoContent();
         }
     }
 }

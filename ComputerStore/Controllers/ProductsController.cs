@@ -32,9 +32,8 @@ namespace ComputerStore.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ProductDto dto)
+        public async Task<IActionResult> Create(CreateProductDto dto)
         {
-            dto.Id = 0;
             var created = await _productService.CreateAsync(dto);
             return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
         }

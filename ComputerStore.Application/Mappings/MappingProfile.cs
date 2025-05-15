@@ -11,6 +11,8 @@ namespace ComputerStore.Application.Mappings
             CreateMap<Category, CategoryDto>().ReverseMap();
             CreateMap<Product, ProductDto>().ReverseMap();
             CreateMap<Stock, StockDto>().ReverseMap();
+            CreateMap<CreateCategoryDto, Category>();
+            CreateMap<CreateProductDto, Product>();
         }
     }
 }

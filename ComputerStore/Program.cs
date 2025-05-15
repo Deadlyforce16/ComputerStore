@@ -35,10 +35,17 @@ namespace ComputerStore
                 options.UseSqlServer(connectionString));
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
-            builder.Services.AddScoped<IStockService, ComputerStore.Infrastructure.Services.StockService>();
+            builder.Services.AddScoped<IStockService, ComputerStore.Application.Services.StockService>();
             builder.Services.AddScoped<IDiscountService, ComputerStore.Infrastructure.Services.DiscountService>();
             builder.Services.AddScoped<CategoryService>();
-            builder.Services.AddScoped<ProductService>();
+            builder.Services.AddScoped<ProductService>(provider =>
+
+            {
+                var productRepo = provider.GetRequiredService<IProductRepository>();
+                var categoryRepo = provider.GetRequiredService<ICategoryRepository>();
+                var mapper = provider.GetRequiredService<AutoMapper.IMapper>();
+                return new ProductService(productRepo, categoryRepo, mapper);
+            });
             builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             var app = builder.Build();

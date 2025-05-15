@@ -9,7 +9,9 @@ namespace ComputerStore.Application.Interfaces
 {
     public interface IStockService
     {
-        Task ImportStockAsync(IEnumerable<StockDto> stockDtos);
+        Task ImportStockAsync(IEnumerable<StockImportDto> stockDtos);
         Task<StockDto?> GetStockByProductIdAsync(int productId);
+        Task UpdateStockAsync(int productId, int quantity);
+        Task DeleteStockAsync(int productId);
     }
 }
